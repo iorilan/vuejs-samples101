@@ -1,0 +1,11 @@
+setup vue with nodejs
+
+1.
+npm i -g @vue/cli @vue/cli-service-global
+2.
+vue create vue-app
+3.
+cd vue-app
+4.
+npm run serve 
+5. http://localhost:8080

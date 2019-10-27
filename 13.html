@@ -1,0 +1,53 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Vue App - CSS class binding</title>
+
+    <style>
+    .active{
+        color:blue
+    }
+    .error{
+        color:red
+    }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+        <!--class-->
+        <div v-bind:class="{ active: isActive }">Active</div>
+        <div v-bind:class="classObject">Active2</div>
+        <!--array-->
+        <div v-bind:class="[activeClass, errorClass]">Active and Error</div>
+        <!--Inline style-->
+        <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">inline style</div>
+    </div>
+    <script>
+      const App = new Vue({
+        el: '#app',
+        data: {
+            isActive: true,
+            hasError: false,
+            error: {type:"fatal"},
+            activeClass: 'active',
+            errorClass: 'error',
+            activeColor:"green",
+            fontSize:"35pt"
+        },
+        computed: {
+            classObject: function () {
+                return {
+                    active: this.isActive && !this.error,
+                    error: this.error && this.error.type === 'fatal'
+                }
+            }
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Vue App -- If Else</title>
+  </head>
+  
+  <body>
+    <div id="app">
+        <input type="button" id="btn1" value="refresh1"  v-on:click="refresh1()"/>
+        <input type="button" id="btn2" value="refresh2"  v-on:click="refresh2()"/>
+        <!--if else-->
+
+        <h1 v-if="d_if">if has 50% chance</h1>
+        <h1 v-else>else also same</h1>
+
+        <!--if elseif else-->
+        <div v-if="d_ifelsif === 1">
+            1
+        </div>
+        <div v-else-if="d_ifelsif === 2">
+            2
+        </div>
+        <div v-else-if="d_ifelsif === 0">
+            0
+        </div>
+        <div v-else>
+            Not 1/2/0
+        </div>
+
+        <!--v-show-->
+        <h1 v-show="ok">Hello!</h1>
+
+        <!--v-show and v-if-->
+        <div>
+            change often , v-show. otherwise prefre v-if
+        </div>
+    </div>
+    <script>
+      const App = new Vue({
+        el: '#app',
+        data:{
+            d1:1,
+            d2:1,
+            ok:false
+        },
+        computed: {
+            d_if: function(){
+                return this.d1;
+            },
+            d_ifelsif:function(){
+                return this.d2;
+            },
+        },
+        methods: {
+            refresh1 (){
+                this.d1 = new Date().getMilliseconds()%2 == 0;
+            },
+            refresh2 (){
+                this.d2 = new Date().getMilliseconds()%3 ;
+            }
+        },
+        mounted() {
+            this.refresh1();
+            this.refresh2();
+        },
+      })
+    </script>
+  </body>
+</html>

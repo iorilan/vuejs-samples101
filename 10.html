@@ -1,0 +1,47 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Vue App</title>
+  </head>
+
+  <body>
+        <div id="example">
+            <!--using computed-->
+            <p>Original message: "{{ message }}"</p>
+            <p>Computed reversed message: "{{ reversedMessage }}"</p>
+            
+            <!--using method-->
+            <p>Reversed message: "{{ reversedMessageFunc() }}"</p>
+        </div>
+    <script>
+        //computed and method
+        //computed : function will only execute when the original property state changed. 
+        //otherwise the function wont be computed again .
+        //method: every time the function being executed regardless original property state 
+        //changed or not
+        var vm = new Vue({
+        el: '#example',
+        data: {
+            message: 'Hello'
+        },
+        computed: {
+            // a computed getter
+            reversedMessage: function () {
+            // `this` points to the vm instance
+             return this.message.split('').reverse().join('')
+            }
+        },
+        methods: {
+            reversedMessageFunc:function(){
+                return this.message.split('').reverse().join('')
+            }
+        },
+        })
+
+    </script>
+  </body>
+</html>

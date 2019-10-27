@@ -1,0 +1,54 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Vue App - Template</title>
+  </head>
+
+  <body>
+    <div id="app">
+        <login></login>
+    </div>
+    
+    <template id="login-template">
+        <div>
+            <h1>Welcome to login</h1>
+            <div>
+              <input placeholder="username" v-model="username"/>
+            </div>
+            <div>
+                <input placeholder="password" v-model="password"/>
+            </div>
+            <button v-on:click="onlogin">login</button>
+            <button>signup</button>
+            <a href="#">Forgot password</a>
+        </div>
+    </template>
+    <script>
+        Vue.component('login', {
+            template: '#login-template',
+            // data must be functino for VUE component
+            data: function () {
+                return {
+                    username:"",
+                    password:"",
+                 }
+            },
+            methods: {
+              onlogin:function(){
+                  alert(this.username+","+this.password);
+              }
+            },
+        });
+      const App = new Vue({
+        el: '#app',
+        data: {
+          
+        },
+      })
+    </script>
+  </body>
+</html>
